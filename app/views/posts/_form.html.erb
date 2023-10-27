@@ -1,0 +1,15 @@
+<%= form_with(model: @post, local: true) do |f| %>
+  <div class="article-box">
+    記事を投稿する
+    <%= f.text_field :mileage, class:"title", placeholder:"走行距離" %>
+    <%= f.text_field :required_time, class:"text", placeholder:"所要時間" %>
+    <%= f.text_field :run_spot, class:"text", placeholder:"ルート場所" %>
+    <%= f.text_area  :text, class:"text", placeholder:"コメント" %>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"genre-select"}) %>
+    <%= f.collection_select(:achievement_level_id, AchievementLevel.all, :id, :name, {}, {class:"genre-select"}) %>
+    <%= f.collection_select(:recommendation_id, Recommendation.all, :id, :name, {}, {class:"genre-select"}) %>
+    <%= f.collection_select(:scenic_beauty_id, ScenicBeauty.all, :id, :name, {}, {class:"genre-select"}) %>
+        <%= f.collection_select(:slope_difficulty_id, SlopeDifficulty.all, :id, :name, {}, {class:"genre-select"}) %>
+    <%= f.submit "投稿する" ,class:"btn" %>
+  </div>
+<% end %>
