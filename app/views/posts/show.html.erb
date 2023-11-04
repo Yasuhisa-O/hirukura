@@ -1,59 +1,68 @@
 <%= render "header" %>
 
   <div class="container bg-light">
-    <div class="p-3 mb-4 border-bottom">
+    <div class="p-3 my-4 border-bottom">
         <span class="display-5 fw-bold">走行ルート:<%= @post.run_spot %></span>
     </div>
 
-    <div class="p-2 m-4 bg-body-tertiary border rounded-3">
-      <div class="container-fluid py-5">
+    <div class="p-2 mb-4 bg-body-tertiary border rounded-3">
+      <div class="container-fluid py-2">
         <div class="row">
           <div class="col">
             <%= image_tag 'yama_image1.jpg', class: "img-thumbnail", style: "width:600px" , alt: "image cap" %>
             <%= image_tag 'yama_image1.jpg', class: "img-thumbnail", style: "width:600px" , alt: "image cap" %>
-            <div class="p-2">
-              <p class="display-5 fw-bold">投稿者:<%= @post.user.name %></p>
+            <div class="p-2 mt-2">
+              <p class="display-6 fw-bold text-black-50">投稿者:<%= @post.user.name %></p>
             </div>
           </div>
-          <div class="col-lg">
-            <div class="p-5 pb-0">
-              <p class="display-6 fw-bold">都道府県</p>
+          <div class="col-lg ">
+            <div class="p-3 pb-0">
+              <p class="display-6 fw-bold border-bottom">都道府県</p>
               <p class="display-6 fw-bold pb-2"><%= @post.prefecture.name %></p>
-              <p class="display-6 fw-bold">走行距離</p>
+              <p class="display-6 fw-bold border-bottom">走行距離</p>
               <p class="display-6 fw-bold pb-2"><%= @post.mileage.name %></p>
-              <p class="display-6 fw-bold">所要時間</p>
+              <p class="display-6 fw-bold border-bottom">所要時間</p>
               <p class="display-6 fw-bold pb-2"><%= @post.required_time.name %></p>
-              <p class="display-6 fw-bold mt-5">達成感</p>
+              <p class="display-6 fw-bold border-bottom mt-5">達成感</p>
               <p class="display-6 fw-bold pb-2"><span class="star5_rating" data-rate= "<%= @post.achievement_level.name %>"></span></p>
-              <p class="display-6 fw-bold">景色の良さ</p>
+              <p class="display-6 fw-bold border-bottom">おすすめ度</p>
               <p class="display-6 fw-bold pb-2"><span class="star5_rating" data-rate= "<%= @post.recommendation.name %>"></span></p>
-              <p class="display-6 fw-bold">斜度難易度</p>
+              <p class="display-6 fw-bold border-bottom">景色の良さ</p>
+              <p class="display-6 fw-bold pb-2"><span class="star5_rating" data-rate= "<%= @post.scenic_beauty.name %>"></span></p>
+              <p class="display-6 fw-bold border-bottom">斜度難易度</p>
               <p class="display-6 fw-bold pb-2"><span class="star5_rating" data-rate= "<%= @post.slope_difficulty.name %>"></span></p>
             </div>
-            <% if user_signed_in? %>
-              <% if current_user.id == @post.user_id %>
-                <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-lg btn-primary btn-block my-1 fs-4" %>
-                <%= link_to "削除する", post_path(@post.id), data: { turbo_method: :delete }, class: "btn btn-lg btn-danger btn-block my-1 fs-4" %>
-              <% end %>
-            <% end %>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row align-items-md-stretch">
+    <div class="row text-center my-4">
+      <% if user_signed_in? %>
+        <% if current_user.id == @post.user_id %>
+        <div class="col-6">
+          <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-lg btn-primary btn-block my-1 fs-4 w-100" %>
+        </div>
+        <div class="col-6">
+          <%= link_to "削除する", post_path(@post.id), data: { turbo_method: :delete }, class: "btn btn-lg btn-danger btn-block my-1 fs-4 w-100" %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="row align-items-md-stretch mb-4">
       <div class="col">
-        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-          <h2>Add borders</h2>
-          <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+        <div class="h-200 p-5 bg-body-tertiary border rounded-3">
+          <h2 class="display-6 fw-bold border-bottom">投稿記事</h2>
+          <p class="display-6 p-5 break-spaces"><%= @post.comment %></p>
         </div>
       </div>
     </div>
 
-    <div class="row align-items-md-stretch">
+    <div class="row align-items-md-stretch mb-4">
       <div class="col">
-        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-          <h2>Add borders</h2>
+        <div class="h-200 p-5 bg-body-tertiary border rounded-3">
+          <h2 class="display-6 fw-bold border-bottom">コメント</h2>
           <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
           <button class="btn btn-outline-secondary" type="button">Example button</button>
         </div>

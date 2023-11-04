@@ -1,27 +1,43 @@
-<div class="form-signin">
-  <div class="row">
-  <%= form_with(model: @post, local: true) do |f| %>
-    ルート
-    <%= f.text_field :run_spot, class:"form-control", placeholder:"ルート" %>
-    コメント
-    <%= f.text_area  :comment, class:"form-control", placeholder:"コメント" %>
-    走行距離
-    <%= f.collection_select(:mileage_id, Mileage.all, :id, :name, {}, {class:"genre-select"}) %>
-    所要時間
-    <%= f.collection_select(:required_time_id, RequiredTime.all, :id, :name, {}, {class:"genre-select"}) %>
-    都道府県
-    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"genre-select"}) %>
-    達成感
-    <%= f.collection_select(:achievement_level_id, AchievementLevel.all, :id, :name, {}, {class:"genre-select"}) %>
-    おすすめ度
-    <%= f.collection_select(:recommendation_id, Recommendation.all, :id, :name, {}, {class:"genre-select"}) %>
-    景色の良さ
-    <%= f.collection_select(:scenic_beauty_id, ScenicBeauty.all, :id, :name, {}, {class:"genre-select"}) %>
-    斜度難易度
-    <%= f.collection_select(:slope_difficulty_id, SlopeDifficulty.all, :id, :name, {}, {class:"genre-select"}) %>
-    <div class="col-12">
-      <%= f.submit "投稿する" ,class:"btn btn-lg btn-primary btn-block my-3 fs-4" %>
+<div class="container-fluid">
+  <div class="p-2 mb-4 bg-light border rounded-3">
+    <div class="form-signin">
+      <div class="row text-center">
+        <%= form_with(model: @post, local: true) do |f| %>
+
+        <div class="col-12">
+          <div class="fs-1 fw-bold my-1">ルート</div>
+          <%= f.text_field :run_spot, class:"form-control fs-3", placeholder:"ルート" %>
+          <div class="col-12 fs-3 fw-bold my-1">
+            都道府県：<%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
+          </div>
+          <div class="fs-1 fw-bold my-1">コメント</div>
+          <%= f.text_area :comment, class:"form-control fs-3", placeholder:"コメント",rows:"10" %>
+        </div>
+        <div class="row">
+          <div class="col-6 fs-3 fw-bold my-1">
+            走行距離：<%= f.collection_select(:mileage_id, Mileage.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
+          </div>
+          <div class="col-6 fs-3 fw-bold my-1">
+            所要時間：<%= f.collection_select(:required_time_id, RequiredTime.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
+          </div>
+          <div class="col-3 fs-3 fw-bold my-1">
+            達成感：<%= f.collection_select(:achievement_level_id, AchievementLevel.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
+          </div>
+          <div class="col-3 fs-3 fw-bold my-1">
+            おすすめ度：<%= f.collection_select(:recommendation_id, Recommendation.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
+          </div>
+          <div class="col-3 fs-3 fw-bold my-1">
+            景色の良さ：<%= f.collection_select(:scenic_beauty_id, ScenicBeauty.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
+          </div>
+          <div class="col-3 fs-3 fw-bold my-1">
+            斜度難易度：<%= f.collection_select(:slope_difficulty_id, SlopeDifficulty.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
+          </div>
+          <div class="col-12">
+            <%= f.submit "投稿する" ,class:"btn btn-lg btn-primary btn-block my-3 fs-4" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
-  <% end %>
 </div>
