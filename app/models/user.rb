@@ -8,4 +8,7 @@ class User < ApplicationRecord
 
   has_many :posts
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefecture
+
 end

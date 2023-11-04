@@ -12,10 +12,10 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_10_24_012911) do
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
-    t.string "mileage", null: false
     t.string "run_spot", null: false
-    t.string "required_time", null: false
-    t.text "text", null: false
+    t.text "comment", null: false
+    t.integer "mileage_id", null: false
+    t.integer "required_time_id", null: false
     t.integer "prefecture_id", null: false
     t.integer "achievement_level_id", null: false
     t.integer "recommendation_id", null: false
@@ -29,6 +29,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_012911) do
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
+    t.text "address"
+    t.string "prefecture_id"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

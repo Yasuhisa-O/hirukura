@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:mileage, :required_time, :run_spot, :text, :prefecture_id, :achievement_level_id, :recommendation_id, :scenic_beauty_id, :slope_difficulty_id).merge(user_id: current_user.id)
+    params.require(:post).permit(:mileage_id, :required_time_id, :run_spot, :comment, :prefecture_id, :achievement_level_id, :recommendation_id, :scenic_beauty_id, :slope_difficulty_id).merge(user_id: current_user.id)
   end
 
 end

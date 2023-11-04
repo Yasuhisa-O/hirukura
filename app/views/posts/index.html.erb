@@ -1,117 +1,161 @@
-<body>
+<%= render "header" %>
 
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (light)">
-        <svg class="bi my-1 bi-bicycle" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light" aria-pressed="true">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
-    </div>
-
-
-<header data-bs-theme="dark">
-
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
-        <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5zm1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139L5.5 6.943zM8 9.057 9.598 6.5H6.402L8 9.057zM4.937 9.5a1.997 1.997 0 0 0-.487-.877l-.548.877h1.035zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765l1.027-1.643zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53L11.55 8.623z"/>
-      </svg>
-        <strong> HIRUKURA </strong>
-      </a>
-      <div class="pull-right">
-        <% if user_signed_in? %>
-          <%= link_to '投稿', new_post_path, class: 'btn btn-primary my-2 pull-right'%>
-          <%= link_to current_user.name, "#", class: 'btn btn-primary my-2 pull-right'%>
-          <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete },  class: 'btn btn-secondary my-2 pull-right'%>
-        <% else %>
-          <%= link_to "Log in", new_user_session_path, class: 'btn btn-primary my-2 pull-right'%>
-          <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-secondary my-2 pull-right' %>
-        <% end %>
-      </div>
-
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-body-tertiary">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <% @posts.each do |post| %>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text"><%= post.mileage %></p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <%= link_to "View", post_path(post.id), class: "btn btn-sm btn-outline-secondary" %>
-                    <% if user_signed_in? %>
-                      <% if current_user.id == post.user_id %>
-                      <%# <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> %>
-                      <%= link_to "Edit", edit_post_path(post.id), class: "btn btn-sm btn-outline-secondary" %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
+<div id="welcomepage">
+    <div class="row">
+        <div class="col-12 p-0 m-0">
+            <div class="text-center">
+                <%= image_tag 'yama_image.jpg', class: "d-block mx-auto", style: "width:100%" , alt: "image cap" %>
             </div>
-          </div>
-      <% end %>
+        </div>
     </div>
-  </div>
 
-</main>
+    <div class="bg_image1">
+        <div class="row bg-opacity">
+            <div class="col-12 p-0 m-0">
+                <div class="text-center text-shadow-neon">
+                    <div class="fs-1 fw-bold py-4">
+                        <p class="font-weight-bold">
+                        情報をシェアしてとっておきのルートを見つけよう！
+                        </p>
+                    </div>
+                    <div class="fs-2 fw-bold pb-5">
+                        <p class="font-weight-bold">自転車好き・ヒルクライム好きが
+                        <br>それぞれの体験をもとに、
+                        <br>情報をシェアしあうサービスです。</p>
+                        <p class="font-weight-bold">口コミ投稿を見ているだけで、
+                        <br>「週末どこに走りに行く？」を解決します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<footer class="text-body-secondary py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-    <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>
+    <div class="album py-5">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <% @posts.last(3).reverse.each do |post| %>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                          <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect>
+                          <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                            <div class="card-body">
+                                <p class="card-text"><%= post.run_spot %></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <%= link_to "View", post_path(post.id), class: "btn btn-sm btn-outline-secondary" %>
+                                        <% if user_signed_in? %>
+                                        <% if current_user.id == post.user_id %>
+                                        <%= link_to "Edit", edit_post_path(post.id), class: "btn btn-sm btn-outline-secondary" %>
+                                        <% end %>
+                                        <% end %>
+                                    </div>
+                                    <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <div class="row postlist">
+        <div class="col-12 text-center m-auto">
+            <a type="button" class="btn btn-primary fs-4" href="{{route('posts.allShow')}}">投稿をもっと見る</a>
+        </div>
+    </div>
+
+    <div class="feature mt-5 mb-5">
+        <div class="p-0 m-0" style="background-color: #87cefa;">
+            <div class="row">
+                <div class="col">
+                    <div class="text-content text-center py-1 text-shadow">
+                        <h2 class="fs-1 fw-bold my-5">気になる投稿をチェック！</h2>
+                    <div class="fs-2 fw-bold">
+                    <p class="font-weight-bold text-shadow">ルートは？走行距離は？
+                    <br>走りに行く前に気になる情報をチェックしよう！</p>
+                </div>
+            </div>
+        </div>
+        <div class="col d-none d-md-inline p-0">
+            <div class="image-content text-center p-0">
+                <%= image_tag 'raid_image1.jpg', class: "img-thumbnail", style: "width:400px" , alt: "image cap" %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="row">
+        <div class="col d-none d-md-inline p-0">
+            <div class="image-content text-center p-0">
+                <%= image_tag 'raid_image2.jpg', class: "img-thumbnail", style: "width:400px" , alt: "image cap" %>
+            </div>
+        </div>
+        <div class="col p-0 m-0">
+            <div class="text-content text-center py-1">
+                <h2 class="fs-1 fw-bold my-5 text-shadow">走ったルートを投稿しよう！</h2>
+                <div class="fs-2 fw-bold">
+                    <p class="font-weight-bold text-shadow">難易度や絶景度などの評価もできます。
+                    <br>「どんなルートを走ったか」「どう感じたのか」は、
+                    <br>自転車人生を振り返るポイントになるはず。
+                    <br>他の人が登る際の参考にもなります。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="background-color: #87cefa;">
+    <div class="row">
+        <div class="col p-0 m-0">
+            <div class="text-content text-center py-1">
+                <h2 class="fs-1 fw-bold my-5 text-shadow">思い出をシェア！</h2>
+                <div class="fs-2 fw-bold">
+                    <p class="font-weight-bold text-shadow">自転車乗りの目線で口コミを書くことができます。
+                    <br>写真だけでなく、「感動した」「辛かった」
+                    <br>「いつ登った」など、私たちだけが味わえる
+                    <br>『体験』を残していこう。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col d-none d-md-inline p-0">
+            <div class="image-content text-center p-0">
+                <%= image_tag 'yama_post1.jpg', class: "img-thumbnail", style: "width:400px" , alt: "image cap" %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row cv-area text-center">
+    <div class="col-12 my-5">
+    <% if user_signed_in? %>
+        <p class="fs-1 text-shadow">◇投稿してシェアしよう！◇</p>
+        <%= link_to "　投稿　", new_post_path, class: 'btn btn-primary my-2 fs-4' %>
+    </div>
+    <% else %>
+        <p class="fs-1 text-shadow">◇登録してシェアしよう！◇</p>
+        <%= link_to "会員登録", new_user_registration_path, class: 'btn btn-primary my-2 fs-4' %>
+    </div>
+    <% end %>
+</div>
+
+<% if user_signed_in? %>
+    <%= link_to(new_post_path, class: 'purchase-btn') do %>
+    <span class='purchase-btn-text fs-3'>投稿</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
+        <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5zm1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139L5.5 6.943zM8 9.057 9.598 6.5H6.402L8 9.057zM4.937 9.5a1.997 1.997 0 0 0-.487-.877l-.548.877h1.035zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765l1.027-1.643zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53L11.55 8.623z"/>
+        </svg>
+    <% end %>
+<% end %>
+
+<footer class="footer navbar navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid">
+      <a href="/" class="navbar-brand">
+        <div class="w-100 text-right h1"> 　HIRUKURA　 </div>
+      </a>
   </div>
 </footer>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
-
-
-</body>
