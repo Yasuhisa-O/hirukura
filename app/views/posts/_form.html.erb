@@ -4,6 +4,8 @@
       <div class="row text-center">
         <%= form_with(model: @post, local: true) do |f| %>
 
+        <%= render 'shared/error_messages', model: f.object %>
+
         <div class="col-12">
           <div class="fs-1 fw-bold my-1">ルート</div>
           <%= f.text_field :run_spot, class:"form-control fs-3", placeholder:"ルート" %>
