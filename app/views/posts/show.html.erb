@@ -61,10 +61,23 @@
 
     <div class="row align-items-md-stretch mb-4">
       <div class="col">
-        <div class="h-200 p-5 bg-body-tertiary border rounded-3">
-          <h2 class="display-6 fw-bold border-bottom">コメント</h2>
-          <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
+        <% if user_signed_in? %>
+          <%= form_with(model: [@post, @comment], local: true) do |form| %>
+          <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
+          <%= form.submit "SEND" %>
+        <% end %>
+        <% else %>
+          <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
+          </strong>
+        <% end %>
+        <div class="comments">
+          <h4>＜コメント一覧＞</h4>
+          <% @comments.each do |comment| %>
+            <p>
+              <strong><%= comment.user.name %></strong><%#= link_to comment.user.name, "/users/#{comment.user_id}" %>
+              <%= comment.text %>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
