@@ -2,7 +2,7 @@
 
   <div class="container bg-light">
     <div class="p-3 my-4 border-bottom text-center">
-        <span class="display-5 fw-bold"><%= @user.name %>さんのプロフィール</span>
+        <span class="display-5 fw-bold">プロフィール</span>
     </div>
 
     <div class="p-2 mb-4 bg-body-tertiary border rounded-3">
@@ -13,10 +13,21 @@
           </div>
           <div class="col-lg ">
             <div class="p-3 pb-0">
+              <p class="display-6 fw-bold border-bottom">名前</p>
+              <p class="display-6 fw-bold pb-2"><%= @user.name %></p>
               <p class="display-6 fw-bold border-bottom">Email</p>
               <p class="display-6 fw-bold pb-2"><%= @user.email %></p>
             </div>
           </div>
+        </div>
+        <div class="row text-center my-4">
+          <% if user_signed_in? %>
+            <% if current_user.id == @user.id %>
+            <div class="col-12">
+              <%= link_to "退会する", user_path(@user.id), data: { turbo_method: :delete }, class: "btn btn-lg btn-danger btn-block my-1 fs-4 w-100" %>
+            </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>

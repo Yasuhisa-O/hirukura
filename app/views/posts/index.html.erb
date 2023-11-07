@@ -41,7 +41,8 @@
                           <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect>
                           <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                             <div class="card-body">
-                                <p class="card-text"><%= post.run_spot %></p>
+                                <p class="card-text">ルート名：<%= post.run_spot %></p>
+                                <p class="card-text">走行距離：<%= post.mileage.name %></p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <%= link_to "View", post_path(post.id), class: "btn btn-sm btn-outline-secondary" %>
@@ -155,7 +156,7 @@
 <footer class="footer navbar navbar-dark bg-dark shadow-sm">
   <div class="container-fluid">
       <a href="/" class="navbar-brand">
-        <div class="w-100 text-right h1"> 　HIRUKURA　 </div>
+        <div class="h1"> 　HIRUKURA　 </div>
       </a>
   </div>
 </footer>
