@@ -1,0 +1,24 @@
+<%= render "posts/header" %>
+
+  <div class="container bg-light">
+    <div class="p-3 my-4 border-bottom text-center">
+        <span class="display-5 fw-bold"><%= @user.name %>さんのプロフィール</span>
+    </div>
+
+    <div class="p-2 mb-4 bg-body-tertiary border rounded-3">
+      <div class="container-fluid py-2">
+        <div class="row">
+          <div class="col">
+            <%= image_tag 'yama_image1.jpg', class: "img-thumbnail", style: "width:600px" , alt: "image cap" %>
+          </div>
+          <div class="col-lg ">
+            <div class="p-3 pb-0">
+              <p class="display-6 fw-bold border-bottom">Email</p>
+              <p class="display-6 fw-bold pb-2"><%= @user.email %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
