@@ -1,7 +1,7 @@
 <%= render "header" %>
 
   <div class="container bg-light">
-    <div class="p-3 my-4 border-bottom">
+    <div class="p-3 my-4 border-bottom text-center">
         <span class="display-5 fw-bold">走行ルート:<%= @post.run_spot %></span>
     </div>
 
@@ -50,35 +50,40 @@
       <% end %>
     </div>
 
-    <div class="row align-items-md-stretch mb-4">
+    <div class="row text-center align-items-md-stretch mb-4">
       <div class="col">
-        <div class="h-200 p-5 bg-body-tertiary border rounded-3">
-          <h2 class="display-6 fw-bold border-bottom">投稿記事</h2>
-          <p class="display-6 p-5 break-spaces"><%= @post.comment %></p>
+        <div class="p-5 bg-body-tertiary border rounded-3">
+          <h2 class="display-6 fw-bold border-bottom">投稿者のコメント</h2>
+          <p class="display-6 p-3 break-spaces"><%= @post.comment %></p>
         </div>
       </div>
     </div>
 
-    <div class="row align-items-md-stretch mb-4">
-      <div class="col">
+  <div class="row text-center align-items-md-stretch mb-4">
+    <div class="col">
+      <div class="p-5 bg-body-tertiary border rounded-3">
+        <h2 class="display-6 fw-bold border-bottom">コメント</h2>
         <% if user_signed_in? %>
           <%= form_with(model: [@post, @comment], local: true) do |form| %>
-          <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
-          <%= form.submit "SEND" %>
-        <% end %>
+          <%= form.text_area :text, class:"form-control fs-3", placeholder: "コメントする", rows: "4" %>
+          <%= form.submit "SEND", class:"btn btn-lg btn-primary btn-block my-3 fs-4" %>
+          <% end %>
         <% else %>
-          <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
-          </strong>
+          <p class="fs-4 fw-bold p-5">※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
         <% end %>
-        <div class="comments">
-          <h4>＜コメント一覧＞</h4>
+        <div class="col">
+          <h2 class="display-6 fw-bold border-bottom">コメント一覧</h2>
           <% @comments.each do |comment| %>
-            <p>
-              <strong><%= comment.user.name %></strong><%#= link_to comment.user.name, "/users/#{comment.user_id}" %>
-              <%= comment.text %>
+            <p class="col-12 fs-2 pt-3">
+              <strong class="break-spaces"><%= comment.text %></strong>
+              <strong class="text-black-50 p-3">by:<%= comment.user.name %></strong><%#= link_to comment.user.name, "/users/#{comment.user_id}" %>
+            <% if user_signed_in? && current_user.id == comment.user_id %>
+              <%= button_to "削除する", post_comment_path(@post,comment.id), method: :delete %>
+            <% end %>
             </p>
+            <%#= link_to "削除する", post_comment_path(comment), data: { turbo_method: :delete }, class: "btn btn-lg btn-danger btn-block my-1 fs-4 w-100" %>
           <% end %>
         </div>
       </div>
-    </div>
   </div>
+</div>
