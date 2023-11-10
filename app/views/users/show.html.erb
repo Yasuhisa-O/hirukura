@@ -21,9 +21,12 @@
           </div>
         </div>
         <div class="row text-center my-4">
+        <div class="col-6">
+          <%= link_to "編集する",  edit_user_path(@user.id), class: "btn btn-lg btn-primary btn-block my-1 fs-4 w-100" %>
+        </div>
           <% if user_signed_in? %>
             <% if current_user.id == @user.id %>
-            <div class="col-12">
+            <div class="col-6">
               <%= link_to "退会する", user_path(@user.id), data: { turbo_method: :delete }, class: "btn btn-lg btn-danger btn-block my-1 fs-4 w-100" %>
             </div>
             <% end %>
