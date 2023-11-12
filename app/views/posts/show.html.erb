@@ -12,7 +12,7 @@
             <%= image_tag 'yama_image1.jpg', class: "img-thumbnail", style: "width:600px" , alt: "image cap" %>
             <%= image_tag 'yama_image1.jpg', class: "img-thumbnail", style: "width:600px" , alt: "image cap" %>
             <div class="p-2 mt-2">
-              <p class="display-6 fw-bold text-black-50">投稿者:<%= @post.user.name %></p>
+              <%= link_to "投稿者:#{@post.user.name}",  user_path(@post.user.id), class: "display-6 fw-bold text-black-50" %>
             </div>
           </div>
           <div class="col-lg ">
@@ -71,7 +71,7 @@
         <% else %>
           <p class="fs-4 fw-bold p-5">※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
         <% end %>
-        <div class="col">
+        <div class="col pb-5">
           <h2 class="display-6 fw-bold border-bottom">コメント一覧</h2>
           <% @comments.each do |comment| %>
             <p class="col-12 fs-2 pt-3">
