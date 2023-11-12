@@ -16,6 +16,18 @@
           </div>
 
         <div class="col-12">
+          <div class="fs-1 fw-bold my-1">アイコン画像</div>
+          <%= f.file_field :image %>
+
+          <div class="col-12 fs-3 fw-bold my-1">
+            都道府県：<%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
+          </div>
+
+          <div class="fs-1 fw-bold my-1">住所</div>
+          <%= f.text_field :address, class:"form-control fs-3", placeholder:"ルート" %>
+        </div>
+
+        <div class="col-12">
           <div class="fs-1 fw-bold my-1">Email</div>
             <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control fs-3"  %>
           </div>

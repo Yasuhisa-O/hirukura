@@ -9,7 +9,11 @@
       <div class="container-fluid py-2">
         <div class="row">
           <div class="col">
-            <%= image_tag 'yama_image1.jpg', class: "img-thumbnail", style: "width:600px" , alt: "image cap" %>
+            <% if @user.image.present? %>
+              <%= image_tag @user.image, class: "img-thumbnail", style: "width:600px", alt: "image cap" %>
+            <% else %>
+              <%= image_tag 'yama_image1.jpg', class: "img-thumbnail", style: "width:600px", alt: "image cap" %>
+            <% end %>
           </div>
           <div class="col-lg ">
             <div class="p-3 pb-0">
@@ -17,15 +21,27 @@
               <p class="display-6 fw-bold pb-2"><%= @user.name %></p>
               <p class="display-6 fw-bold border-bottom">Email</p>
               <p class="display-6 fw-bold pb-2"><%= @user.email %></p>
+              <p class="display-6 fw-bold border-bottom">都道府県：</p>
+              <% if @user.prefecture.present? %>
+                <p class="display-6 fw-bold pb-2"><%= @user.prefecture.name %></p>
+                <% else %>
+                <p class="display-6 fw-bold pb-2">----</p>
+              <% end %>
+              <p class="display-6 fw-bold border-bottom">住所：</p>
+                <% if @user.address.present? %>
+                <p class="display-6 fw-bold pb-2"><%= @user.address %></p>
+                <% else %>
+                <p class="display-6 fw-bold pb-2">----</p>
+              <% end %>
             </div>
           </div>
         </div>
         <div class="row text-center my-4">
-        <div class="col-6">
-          <%= link_to "パスワード変更", edit_user_registration_path(@user.id), class: "btn btn-lg btn-primary btn-block my-1 fs-4 w-100" %>
-        </div>
           <% if user_signed_in? %>
             <% if current_user.id == @user.id %>
+            <div class="col-6">
+              <%= link_to "プロフィール変更", edit_user_registration_path(@user.id), class: "btn btn-lg btn-primary btn-block my-1 fs-4 w-100" %>
+            </div>
             <div class="col-6">
               <%= link_to "退会する", user_path(@user.id), data: { turbo_method: :delete }, class: "btn btn-lg btn-danger btn-block my-1 fs-4 w-100" %>
             </div>
@@ -40,9 +56,13 @@
           <% @posts.reverse.each do |post| %>
             <div class="col">
               <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect>
-              <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <% if post.images[0] == nil %>
+                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                  <rect width="100%" height="100%" fill="#55595c"></rect>
+                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">No images posted</text></svg>
+                  <% else %>
+                  <%= image_tag post.images[0], class: "img-thumbnail", style: "height:225px" , alt: "image cap" %>
+                <% end %>
                 <div class="card-body">
                 <p class="card-text">ルート名：<%= post.run_spot %></p>
                 <p class="card-text">走行距離：<%= post.mileage.name %></p>
@@ -55,7 +75,7 @@
                       <% end %>
                     <% end %>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">投稿日：<br><%= l post.created_at %></small>
                   </div>
                 </div>
               </div>
