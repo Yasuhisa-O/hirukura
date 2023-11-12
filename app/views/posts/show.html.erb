@@ -79,17 +79,18 @@
         <% else %>
           <p class="fs-4 fw-bold p-5">※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
         <% end %>
-        <div class="col pb-5">
+        <div class="row pb-5">
           <h2 class="display-6 fw-bold border-bottom">コメント一覧</h2>
           <% @comments.each do |comment| %>
-            <p class="col-12 fs-2 pt-3">
-              <strong class="break-spaces"><%= comment.text %></strong>
-              <strong class="text-black-50 p-3">by:<%= comment.user.name %></strong><%#= link_to comment.user.name, "/users/#{comment.user_id}" %>
-            <% if user_signed_in? && current_user.id == comment.user_id %>
-              <%= button_to "削除する", post_comment_path(@post,comment.id), method: :delete %>
-            <% end %>
-            </p>
-            <%#= link_to "削除する", post_comment_path(comment), data: { turbo_method: :delete }, class: "btn btn-lg btn-danger btn-block my-1 fs-4 w-100" %>
+            <div class="col-10 fs-2 pt-3">
+              <span class="break-spaces"><%= comment.text %></span>
+              <span><%= link_to "by:#{comment.user.name}",  user_path(comment.user.id), class: "text-black-50 p-3" %></span>
+            </div>
+            <div class="col-2 d-flex align-items-center">
+              <% if user_signed_in? && current_user.id == comment.user_id %>
+                <%= button_to "削除する", post_comment_path(@post,comment.id), method: :delete %>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>
