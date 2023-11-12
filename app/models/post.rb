@@ -2,8 +2,9 @@ class Post < ApplicationRecord
 
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many_attached :images
 
-  validates :run_spot, :comment, presence: true
+  validates :run_spot, :comment, :images, presence: true
 
   validates :mileage_id           , numericality: { other_than: 1 , message: "can't be blank"}
   validates :required_time_id     , numericality: { other_than: 1 , message: "can't be blank"}

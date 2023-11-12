@@ -6,6 +6,9 @@
 
         <%= render 'shared/error_messages', model: f.object %>
 
+        <%= f.file_field :images, name: 'post[images][]', data: {index: 0} %>
+        <%= f.file_field :images, name: 'post[images][]', data: {index: 1} %>
+
         <div class="col-12">
           <div class="fs-1 fw-bold my-1">ルート</div>
           <%= f.text_field :run_spot, class:"form-control fs-3", placeholder:"ルート" %>
