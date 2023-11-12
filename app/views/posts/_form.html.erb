@@ -6,7 +6,9 @@
 
         <%= render 'shared/error_messages', model: f.object %>
 
+        <div class="fs-1 fw-bold my-1">走行ルート</div>
         <%= f.file_field :images, name: 'post[images][]', data: {index: 0} %>
+        <div class="fs-1 fw-bold my-1">おすすめ写真</div>
         <%= f.file_field :images, name: 'post[images][]', data: {index: 1} %>
 
         <div class="col-12">
