@@ -1,0 +1,38 @@
+<%= render "posts/header" %>
+
+<div class="container">
+  <div class="text-center m-5">
+    <div class="p-3 my-4 border-bottom">
+      <span class="display-5 fw-bold">プロフィール編集</span>
+    </div>
+  </div>
+  <div class="container-fluid p-2 mb-4 bg-light border rounded-3 text-center">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="row">
+        <div class="col-12">
+          <div class="fs-1 fw-bold my-1">名前</div>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name",class: "form-control fs-3" %>
+          </div>
+
+        <div class="col-12">
+          <div class="fs-1 fw-bold my-1">Email</div>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control fs-3"  %>
+          </div>
+
+        <div class="col-12">
+          <div class="fs-1 fw-bold my-1">パスワード</div>
+            <%= f.password_field :password, autocomplete: "new-password",class: "form-control fs-3"  %>
+          </div>
+
+        <div class="col-12 mb-5">
+          <div class="fs-1 fw-bold my-1">パスワード(確認用)</div>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control fs-3"  %>
+          </div>
+
+        <%= f.submit "保存", class:"btn btn-lg btn-primary btn-block m-3 fs-4 col" %>
+        <%= link_to "戻る", user_path(current_user.id), class:"btn btn-lg btn-primary btn-block m-3 fs-4 col" %>
+      </div>
+    <% end %>
+  </div>
+</div>

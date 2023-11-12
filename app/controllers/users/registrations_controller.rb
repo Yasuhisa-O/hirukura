@@ -38,8 +38,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
+  def update_resource(resource, params)
+    resource.update_without_current_password(params) #独自のメソッド。解説は下記にて。
+  end
+
+  #更新後のパスを指定。マイページに戻るように設定。
+  def after_update_path_for(resource)
+    user_path(@user.id)
+  end
+  
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
