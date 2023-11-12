@@ -43,6 +43,10 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def all_show
+    @posts = Post.all
+  end
+
   private
 
   def post_params
