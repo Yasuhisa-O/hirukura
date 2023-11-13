@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   get 'posts/all_show'
+  get 'posts/all_show/search', to: 'posts#search'
   # get 'posts/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'posts#index'

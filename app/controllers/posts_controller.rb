@@ -47,6 +47,12 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def search
+    @search = params[:mileage_id]
+    @posts = Post.looks(params[:prefecture_id],params[:mileage_id])
+    render :all_show
+  end
+
   private
 
   def post_params

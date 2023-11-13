@@ -33,8 +33,8 @@
 
     <div class="album py-5">
         <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <% @posts.last(6).reverse.each do |post| %>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 g-4">
+                <% @posts.last(8).reverse.each do |post| %>
                     <div class="col">
                         <div class="card shadow-sm">
                             <% if post.images[0] == nil %>

@@ -22,4 +22,13 @@ class Post < ApplicationRecord
   belongs_to :recommendation
   belongs_to :scenic_beauty
   belongs_to :slope_difficulty
+
+  def self.looks(search1,search2)
+    if search1 == "0" && search2 == "1"
+      @Post = Post.all
+    else
+      @Post = Post.where("prefecture_id LIKE? or mileage_id LIKE?","%#{search1}%","%#{search2}%")
+    end
+  end
+
 end
