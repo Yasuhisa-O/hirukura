@@ -2,25 +2,23 @@
 
 <div id="container w-100">
 
-            <%= image_tag 'yama_image.jpg', class: "w-100", alt: "image cap" %>
+    <%= image_tag 'yama_image.jpg', class: "w-100", alt: "image cap" %>
 
     <div class="bg_image1">
-        <div class="row bg-opacity">
-            <div class="col-12 p-0 m-0">
-                <div class="text-center text-shadow-neon">
-                    <div class="fs-1 fw-bold py-4">
-                        <p class="font-weight-bold">
-                        情報をシェアしてとっておきのルートを見つけよう！
-                        </p>
-                    </div>
-                    <div class="fs-2 fw-bold pb-5">
-                        <p class="font-weight-bold">自転車好き・ヒルクライム好きが
-                        <br>それぞれの体験をもとに、
-                        <br>情報をシェアしあうサービスです。</p>
-                        <p class="font-weight-bold">口コミ投稿を見ているだけで、
-                        <br>「週末どこに走りに行く？」を解決します。
-                        </p>
-                    </div>
+        <div class="bg-opacity p-0">
+            <div class="text-center text-shadow-neon">
+                <div class="fs-1 fw-bold py-4">
+                    <p class="font-weight-bold">
+                    情報をシェアしてとっておきのルートを見つけよう！
+                    </p>
+                </div>
+                <div class="fs-2 fw-bold pb-5">
+                    <p class="font-weight-bold">自転車好き・ヒルクライム好きが
+                    <br>それぞれの体験をもとに、
+                    <br>情報をシェアしあうサービスです。</p>
+                    <p class="font-weight-bold">口コミ投稿を見ているだけで、
+                    <br>「週末どこに走りに行く？」を解決します。
+                    </p>
                 </div>
             </div>
         </div>
@@ -36,7 +34,7 @@
                             <% if post.images[0] == nil %>
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <rect width="100%" height="100%" fill="#55595c"></rect>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">No images posted</text></svg>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">No images</text></svg>
                                 <% else %>
                                 <%= image_tag post.images[0], class: "img-thumbnail", style: "height:225px" , alt: "image cap" %>
                             <% end %>
@@ -58,57 +56,47 @@
         </div>
     </div>
 
-    <div class="row postlist">
-        <div class="col-12 text-center p-0">
-            <%= link_to "投稿をもっと見る", posts_all_show_path, class: "btn btn-secondary btn-lg my-2 fs-4" %>
-        </div>
+    <div class="text-center">
+        <%= link_to "投稿をもっと見る", posts_all_show_path, class: "btn btn-secondary btn-lg my-2 fs-4" %>
     </div>
 
-<div id="container-fluid">
-    <div class="feature mt-5 mb-5">
-        <div class="p-0 m-0" style="background-color: #87cefa;">
-            <div class="row">
-                <div class="col p-0">
-                    <div class="text-content text-center py-1 text-shadow">
-                        <h2 class="fs-1 fw-bold my-5">気になる投稿をチェック！</h2>
+    <div style="background-color: #87cefa;">
+        <div class="row p-0 m-0 mt-5">
+            <div class="col text-content text-center">
+                <div class="py-1 text-shadow">
+                    <h2 class="fs-1 fw-bold my-5">気になる投稿をチェック！</h2>
                     <div class="fs-2 fw-bold">
-                    <p class="font-weight-bold text-shadow">ルートは？走行距離は？
-                    <br>走りに行く前に気になる情報をチェックしよう！</p>
+                        <p class="font-weight-bold text-shadow">ルートは？走行距離は？
+                        <br>走りに行く前に気になる情報をチェックしよう！</p>
                     </div>
                 </div>
             </div>
-        <div class="col d-none d-md-inline p-0">
-            <div class="image-content text-center p-0">
+            <div class="col d-none d-md-inline text-center p-0">
                 <%= image_tag 'raid_image2.jpg', class: "img-thumbnail", style: "width:400px" , alt: "image cap" %>
             </div>
         </div>
     </div>
-    </div>
 
-    <div>
-        <div class="row">
-            <div class="col d-none d-md-inline p-0">
-                <div class="image-content text-center p-0">
-                    <%= image_tag 'yama_image1.jpg', class: "img-thumbnail", style: "width:400px" , alt: "image cap" %>
-                </div>
+    <div class="row p-0 m-0">
+        <div class="col d-none d-md-inline">
+            <div class="image-content text-center">
+                <%= image_tag 'yama_image1.jpg', class: "img-thumbnail", style: "width:400px" , alt: "image cap" %>
             </div>
-            <div class="col p-0 m-0">
-                <div class="text-content text-center py-1">
-                    <h2 class="fs-1 fw-bold my-5 text-shadow">走ったルートを投稿しよう！</h2>
-                    <div class="fs-2 fw-bold">
-                        <p class="font-weight-bold text-shadow">難易度や絶景度などの評価もできます。
-                        <br>「どんなルートを走ったか」「どう感じたのか」は、
-                        <br>自転車人生を振り返るポイントになるはず。
-                        <br>他の人が登る際の参考にもなります。</p>
-                    </div>
-                </div>
+        </div>
+        <div class="col text-content text-center py-1">
+            <h2 class="fs-1 fw-bold my-5 text-shadow">走ったルートを投稿しよう！</h2>
+            <div class="fs-2 fw-bold">
+                <p class="font-weight-bold text-shadow">難易度や絶景度などの評価もできます。
+                <br>「どんなルートを走ったか」「どう感じたのか」は、
+                <br>自転車人生を振り返るポイントになるはず。
+                <br>他の人が登る際の参考にもなります。</p>
             </div>
         </div>
     </div>
 
     <div style="background-color: #87cefa;">
-        <div class="row">
-            <div class="col p-0 m-0">
+        <div class="row p-0 m-0">
+            <div class="col">
                 <div class="text-content text-center py-1">
                     <h2 class="fs-1 fw-bold my-5 text-shadow">思い出をシェア！</h2>
                     <div class="fs-2 fw-bold">
@@ -127,10 +115,7 @@
         </div>
     </div>
 
-</div>
-
-<div class="row cv-area text-center">
-    <div class="col-12 my-5 p-0">
+    <div class="text-center my-5">
     <% if user_signed_in? %>
         <p class="fs-1 text-shadow">◇投稿してシェアしよう！◇</p>
         <%= link_to "　投稿画面へ　", new_post_path, class: 'btn btn-secondary btn-lg my-2 fs-4' %>
