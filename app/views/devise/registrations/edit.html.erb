@@ -11,7 +11,7 @@
     <%= render "devise/shared/error_messages", resource: resource %>
       <div class="row">
         <div class="col-12">
-          <div class="fs-1 fw-bold my-1">名前</div>
+          <div class="fs-1 fw-bold my-1">名前<span class="badge bg-danger rounded-pill m-2">必須</span></div>
             <%= f.text_field :name, autofocus: true, autocomplete: "name",class: "form-control fs-3" %>
           </div>
 
@@ -24,7 +24,7 @@
           </div>
 
           <div class="fs-1 fw-bold my-1">住所</div>
-          <%= f.text_field :address, class:"form-control fs-3", placeholder:"ルート" %>
+          <%= f.text_field :address, class:"form-control fs-3", placeholder:"住所" %>
         </div>
 
         <div class="col-12">
@@ -33,12 +33,12 @@
           </div>
 
         <div class="col-12">
-          <div class="fs-1 fw-bold my-1">パスワード</div>
+          <div class="fs-1 fw-bold my-1">パスワード<span class="badge bg-danger rounded-pill m-2">必須</span></div>
             <%= f.password_field :password, autocomplete: "new-password",class: "form-control fs-3"  %>
           </div>
 
         <div class="col-12 mb-5">
-          <div class="fs-1 fw-bold my-1">パスワード(確認用)</div>
+          <div class="fs-1 fw-bold my-1">パスワード(確認用)<span class="badge bg-danger rounded-pill m-2">必須</span></div>
             <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control fs-3"  %>
           </div>
 

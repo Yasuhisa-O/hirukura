@@ -1,13 +1,8 @@
 <%= render "header" %>
 
-<div id="container">
-    <div class="row">
-        <div class="col-12 p-0 m-0">
-            <div class="text-center w-100">
-                <%= image_tag 'yama_image.jpg', class: "d-block w-100", alt: "image cap" %>
-            </div>
-        </div>
-    </div>
+<div id="container w-100">
+
+            <%= image_tag 'yama_image.jpg', class: "w-100", alt: "image cap" %>
 
     <div class="bg_image1">
         <div class="row bg-opacity">
@@ -35,6 +30,7 @@
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 g-4">
                 <% @posts.last(8).reverse.each do |post| %>
+                <%#= link_to post_path(post.id) do %>
                     <div class="col">
                         <div class="card shadow-sm">
                             <% if post.images[0] == nil %>
@@ -50,25 +46,21 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <%= link_to "View", post_path(post.id), class: "btn btn-sm btn-outline-secondary" %>
-                                        <% if user_signed_in? %>
-                                        <% if current_user.id == post.user_id %>
-                                        <%= link_to "Edit", edit_post_path(post.id), class: "btn btn-sm btn-outline-secondary" %>
-                                        <% end %>
-                                        <% end %>
                                     </div>
-                                    <small class="text-body-secondary">投稿日：<br><%= l post.created_at %></small>
+                                    <small class="text-body-secondary">投稿者<br><%= post.user.name %> </small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 <% end %>
+                <%# end %>
             </div>
         </div>
     </div>
 
     <div class="row postlist">
-        <div class="col-12 text-center m-auto">
-            <%= link_to "投稿をもっと見る", posts_all_show_path, class: "btn btn-primary fs-4" %>
+        <div class="col-12 text-center p-0">
+            <%= link_to "投稿をもっと見る", posts_all_show_path, class: "btn btn-secondary btn-lg my-2 fs-4" %>
         </div>
     </div>
 
@@ -76,7 +68,7 @@
     <div class="feature mt-5 mb-5">
         <div class="p-0 m-0" style="background-color: #87cefa;">
             <div class="row">
-                <div class="col">
+                <div class="col p-0">
                     <div class="text-content text-center py-1 text-shadow">
                         <h2 class="fs-1 fw-bold my-5">気になる投稿をチェック！</h2>
                     <div class="fs-2 fw-bold">
@@ -141,11 +133,11 @@
     <div class="col-12 my-5 p-0">
     <% if user_signed_in? %>
         <p class="fs-1 text-shadow">◇投稿してシェアしよう！◇</p>
-        <%= link_to "　投稿　", new_post_path, class: 'btn btn-primary my-2 fs-4' %>
+        <%= link_to "　投稿画面へ　", new_post_path, class: 'btn btn-secondary btn-lg my-2 fs-4' %>
     </div>
     <% else %>
         <p class="fs-1 text-shadow">◇登録してシェアしよう！◇</p>
-        <%= link_to "会員登録", new_user_registration_path, class: 'btn btn-primary my-2 fs-4' %>
+        <%= link_to "新規登録へ", new_user_registration_path, class: 'btn btn-secondary btn-lg my-2 fs-4' %>
     </div>
     <% end %>
 </div>
