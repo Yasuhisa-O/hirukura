@@ -40,10 +40,10 @@
           <% if user_signed_in? %>
             <% if current_user.id == @user.id %>
             <div class="col-6">
-              <%= link_to "プロフィール変更", edit_user_registration_path(@user.id), class: "btn btn-lg btn-primary btn-block my-1 fs-4 w-100" %>
+              <%= link_to "プロフィール編集", edit_user_registration_path(@user.id), class: "btn btn-lg btn-primary btn-block my-1 fs-4 w-100" %>
             </div>
             <div class="col-6">
-              <%= link_to "退会する", user_path(@user.id), data: { turbo_method: :delete }, class: "btn btn-lg btn-danger btn-block my-1 fs-4 w-100" %>
+              <%= link_to "退会", user_path(@user.id), data: { turbo_method: :delete }, class: "btn btn-lg btn-danger btn-block my-1 fs-4 w-100" %>
             </div>
             <% end %>
           <% end %>

@@ -1,8 +1,8 @@
 
-<div class="container m-0">
+<div class="container bg-light">
   <div class="row p-2">
     <%= form_with url: posts_all_show_search_path, local: true, method: :get do |f| %>
-      <div class="col fs-4 fw-bold my-1">
+      <div class="col fs-4 fw-bold mt-4">
         都道府県：<%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
         走行距離：<%= f.collection_select(:mileage_id, Mileage.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
             <%#所要時間：<%= f.collection_select(:required_time_id, RequiredTime.all, :id, :name, {}, {class:"genre-select fs-4"}) %>
@@ -15,10 +15,7 @@
       </div>
     <% end %>
   </div>
-</div>
 
-
-<div class="container">
   <div class="album py-5">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 g-4">
       <% @posts.reverse.each do |post| %>
